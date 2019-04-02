@@ -1,0 +1,8 @@
+mixin card(name)
+    .column.pet
+                a(href = `/pets/${name}`)
+                    .card
+                        header.card-header
+                            p.card-header-title
+                                = name
+                a.delete(href =`/pets/${name}/delete`)

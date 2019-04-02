@@ -1,0 +1,60 @@
+extends ../layout
+include ../mixin/card
+include ../mixin/image
+
+block title 
+    = `Beverage`
+
+block content
+    h1.title MyBeverage
+        = `(${count})`
+    #search-box.field  
+        form(action="/beverages/drinks/search",method="POST")
+            .field
+                .control    
+                    input.input(name="q")
+            .field
+                .control
+                    button.button.is-link.is-fullwidth Search
+    br
+    #list
+        .columns
+            - for (let i = 0; i < categorys.length; i++)
+                    .column.beverage
+                        a(href = `/beverages/categories/search/${categorys[i].category}`)          
+                            .card
+                                header.card-header
+                                        p.card-header-title 
+                                            br
+                                            | 
+                                            = categorys[i].category
+                            a.delete(href=`/beverages/categories/${categorys[i].id}?_method=delete`)     
+            form(action="/beverages/categories/new",method="GET")
+                            .field
+                                .control
+                                    button.button.is-link.is-fullwidth Add Category
+    br
+    #list
+        .columns
+            - for (let i = 0; i < drinks.length; i += 1)
+                    .column.beverage         
+                        a(href = `/beverages/drinks/${drinks[i].id}`)
+                            .card
+                                header.card-header 
+                                        p.card-header-title      
+                                            +image(drinks[i].imageUrl) 
+                                header.card-header 
+                                        p.card-header-title                                  
+                                            | category :
+                                            = drinks[i].category 
+                                            br
+                                            | name :
+                                            = drinks[i].drinkname 
+                                            br
+                                            | comment :
+                                            = drinks[i].comment 
+                                a.delete(href =`/beverages/drinks/${drinks[i].id}?_method=delete`)                            
+        form(action="/beverages/drinks/new",method="GET")
+                .field
+                    .control
+                        button.button.is-link.is-fullwidth Add new drink         

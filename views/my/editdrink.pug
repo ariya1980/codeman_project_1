@@ -1,0 +1,26 @@
+extends ../layout
+
+block title
+    = `Beverage - Edit drinks`
+
+block content
+    h1.title Edit Drink
+        form(action=`/beverages/drinks/${drinks.id}/edit`,method="POST")
+            .field
+                .control
+                    .select
+                        select(name="category")
+                            - for(let i = 0; i < categorys.length; i += 1)
+                                option(value=categorys[i].category) #{categorys[i].category}
+            .field
+                .control
+                    input.input(name="drinkname" value=`${drinks.drinkname}`)
+            .field
+                .control
+                    input.input(name="imageUrl" value=`${drinks.imageUrl}`)
+            .field
+                .control
+                    input.input(name="comment" value=`${drinks.comment}`)
+            .field
+                    .control
+                        button.button.is-link.is-fullwith Edit

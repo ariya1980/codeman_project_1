@@ -1,0 +1,26 @@
+extends ../layout
+
+block title
+    = `Beverage - Add new drinks`
+
+block content
+    h1.title Add Drink
+        form(action="/beverages/drinks",method="POST")
+            .field
+                .control
+                    .select
+                        select(name="category")
+                            - for(let i = 0; i < categorys.length; i += 1)
+                                option(value=`${categorys[i].category}`) #{categorys[i].category}
+            .field
+                .control
+                    input.input(name="drinkname" placeholder='drinkname')
+            .field
+                .control
+                    input.input(name="imageUrl" placeholder='imageUrl')
+            .field
+                .control
+                    input.input(name="comment" placeholder='comment')
+            .field
+                .control
+                    button.button.is-link.is-fullwith Add

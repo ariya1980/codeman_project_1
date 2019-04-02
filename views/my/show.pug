@@ -1,0 +1,14 @@
+extends ../layout
+include ../mixin/image
+include ../mixin/fullness
+include ../mixin/form
+include ../mixin/foodlist
+
+block title 
+    = `MyPet - ${pet.name}`
+
+block content
+    +image(pet.name) 
+    +fullness(pet.fullness)
+    +form(pet.name)
+    +food(foodFullnesses) 
